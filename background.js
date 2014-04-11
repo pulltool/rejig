@@ -5,18 +5,23 @@ var iconSize = 19;
 var sheetWidth = 6;
 
 var spriteImage = document.createElement('img');
+spriteImage.addEventListener("load",initContexts);
 spriteImage.src = '/images/sprites.svg';
 
-scaleCtxs = [];
-scales.forEach(function(scale) {
-  var spriteCanvas = document.createElement('canvas');
-  spriteCanvas.width = spriteImage.width * scale;
-  spriteCanvas.height = spriteImage.height * scale;
-
-  scaleCtxs[scale] = spriteCanvas.getContext('2d');
-  scaleCtxs[scale].drawImage(spriteImage, 0, 0,
-    spriteCanvas.width, spriteCanvas.height);
-});
+var scaleCtxs = [];
+function initContexts() {
+  scales.forEach(function(scale) {
+    var spriteCanvas = document.createElement('canvas');
+    spriteCanvas.width = spriteImage.width * scale;
+    spriteCanvas.height = spriteImage.height * scale;
+    console.log(spriteCanvas);
+    scaleCtxs[scale] = spriteCanvas.getContext('2d');
+    scaleCtxs[scale].drawImage(spriteImage, 0, 0,
+      spriteCanvas.width, spriteCanvas.height);
+    console.log(spriteCanvas);
+    console.log(scaleCtxs[scale]);
+  });
+}
 
 function getFrame(i) {
   var x = i % sheetWidth;
