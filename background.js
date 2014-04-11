@@ -16,7 +16,7 @@ scales.forEach(function(scale) {
   scaleCtxs[scale] = spriteCanvas.getContext('2d');
   scaleCtxs[scale].drawImage(spriteImage, 0, 0,
     spriteCanvas.width, spriteCanvas.height);
-}
+});
 
 function getFrame(i) {
   var x = i % sheetWidth;
